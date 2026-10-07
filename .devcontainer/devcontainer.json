@@ -1,0 +1,21 @@
+{
+  "name": "SURE ProEd RTL-to-GDS Tools",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "forwardPorts": [6080],
+  "portsAttributes": {
+    "6080": {
+      "label": "noVNC Desktop",
+      "onAutoForward": "notify"
+    }
+  },
+  "remoteUser": "root",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "mshr-h.VerilogHDL"
+      ]
+    }
+  }
+}
