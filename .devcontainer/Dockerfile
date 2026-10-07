@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y \
     tightvncserver \
     build-essential gcc g++ make pkg-config \
     python3 python3-pip git wget curl ca-certificates \
-    iverilog gtkwave yosys magic klayout verilator opensta \
+    iverilog gtkwave yosys magic klayout verilator \
  && rm -rf /var/lib/apt/lists/*
 
 # 2) Install OpenROAD from prebuilt Ubuntu 22.04 release
