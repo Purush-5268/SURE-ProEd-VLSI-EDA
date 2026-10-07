@@ -22,10 +22,12 @@ RUN wget -q https://github.com/Precision-Innovations/OpenROAD/releases/download/
 RUN pip3 install volare openlane \
  && rm -rf /root/.cache/pip
 
-# 4) Install Sky130 PDK via Volare (Optimized to fit storage limits)
+# 4) Install Sky130 PDK via Volare (Multi-corner: HD, HS, LS)
 RUN mkdir -p /opt/pdk && \
     volare enable --pdk sky130 --pdk-root /opt/pdk \
     --include-libraries sky130_fd_sc_hd \
+    --include-libraries sky130_fd_sc_hs \
+    --include-libraries sky130_fd_sc_ls \
     bdc9412b3e468c102d01b7cf6337be06ec6e9c9a
 
 # 5) Desktop environment setup
