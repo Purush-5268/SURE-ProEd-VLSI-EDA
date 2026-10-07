@@ -22,7 +22,7 @@ RUN pip3 install volare openlane
 
 # 4) Install Sky130 PDK via Volare
 RUN mkdir -p /opt/pdk && \
-    volare enable --pdk sky130 --pdk-root /opt/pdk
+    volare enable --pdk sky130 --pdk-root /opt/pdk bdc9412b3e468c102d01b7cf6337be06ec6e9c9a
 
 # 5) Desktop environment setup
 COPY supervisord.conf /etc/supervisor/conf.d/vnc.conf
