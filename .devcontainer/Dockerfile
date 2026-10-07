@@ -18,8 +18,8 @@ RUN wget -q https://github.com/Precision-Innovations/OpenROAD/releases/download/
  && apt-get update && apt-get install -y ./openroad_2.0_amd64-ubuntu22.04-2023-08-10.deb \
  && rm -f openroad*.deb
 
-# 3) Install Volare (PDK manager) and OpenLane, then clean pip cache to save space
-RUN pip3 install volare openlane \
+# 3) Install Volare and OpenLane (Pinning click to 8.1.7 to fix OpenLane CLI crash)
+RUN pip3 install click==8.1.7 volare openlane \
  && rm -rf /root/.cache/pip
 
 # 4) Install Sky130 PDK via Volare (Multi-corner: HD, HS, LS)
