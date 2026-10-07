@@ -3,13 +3,13 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV DISPLAY=:1
 ENV PDK_ROOT=/opt/pdk
 
-# 1) Core dependencies, GUI Desktop, and base VLSI Tools
+# 1) Core dependencies, GUI Desktop, and complete VLSI/Analog Toolchain
 RUN apt-get update && apt-get install -y \
     xfce4 xfce4-terminal x11vnc xvfb novnc websockify supervisor dbus-x11 gedit vim \
     tightvncserver \
     build-essential gcc g++ make pkg-config \
     python3 python3-pip python3-tk git wget curl ca-certificates \
-    iverilog gtkwave yosys magic klayout verilator \
+    iverilog gtkwave ngspice yosys magic klayout verilator \
  && rm -rf /var/lib/apt/lists/*
 
 # 2) Install OpenROAD from prebuilt Ubuntu 22.04 release
@@ -18,10 +18,11 @@ RUN wget -q https://github.com/Precision-Innovations/OpenROAD/releases/download/
  && apt-get update && apt-get install -y ./openroad_2.0_amd64-ubuntu22.04-2023-08-10.deb \
  && rm -f openroad*.deb
 
-# 3) Install Volare (PDK manager) and OpenLane
-RUN pip3 install volare openlane
+# 3) Install Volare (PDK manager) and OpenLane, then clean pip cache to save space
+RUN pip3 install volare openlane \
+ && rm -rf /root/.cache/pip
 
-# 4) Install Sky130 PDK via Volare (HD, HVL, HS, LS)
+# 4) Install Sky130 PDK via Volare (HD, HVL, HS, LS) with multi-corner support
 RUN mkdir -p /opt/pdk && \
     volare enable --pdk sky130 --pdk-root /opt/pdk \
     --include-libraries sky130_fd_sc_hd \
@@ -29,7 +30,7 @@ RUN mkdir -p /opt/pdk && \
     --include-libraries sky130_fd_sc_hs \
     --include-libraries sky130_fd_sc_ls \
     bdc9412b3e468c102d01b7cf6337be06ec6e9c9a
-    
+
 # 5) Desktop environment setup
 COPY supervisord.conf /etc/supervisor/conf.d/vnc.conf
 WORKDIR /workspaces
