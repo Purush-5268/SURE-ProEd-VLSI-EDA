@@ -21,9 +21,9 @@ RUN wget -q https://github.com/Precision-Innovations/OpenROAD/releases/download/
 # 3) Install Volare (PDK manager) and OpenLane
 RUN pip3 install volare openlane
 
-# 4) Install Sky130 PDK via Volare
+# 4) Install Sky130 PDK via Volare (HD, HVL, HS, and LP libraries)
 RUN mkdir -p /opt/pdk && \
-    volare enable --pdk sky130 --pdk-root /opt/pdk bdc9412b3e468c102d01b7cf6337be06ec6e9c9a
+    volare enable --pdk sky130 --pdk-root /opt/pdk --include-libraries sky130_fd_sc_hd,sky130_fd_sc_hvl,sky130_fd_sc_hs,sky130_fd_sc_lp bdc9412b3e468c102d01b7cf6337be06ec6e9c9a
 
 # 5) Desktop environment setup
 COPY supervisord.conf /etc/supervisor/conf.d/vnc.conf
