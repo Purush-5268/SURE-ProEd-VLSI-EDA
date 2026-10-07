@@ -10,6 +10,8 @@
       "onAutoForward": "notify"
     }
   },
+  "overrideCommand": false,
+  "postStartCommand": "supervisord -c /etc/supervisor/conf.d/vnc.conf",
   "remoteUser": "root",
   "customizations": {
     "vscode": {
