@@ -6,9 +6,10 @@ ENV PDK_ROOT=/opt/pdk
 # 1) Core dependencies, GUI Desktop, and base VLSI Tools
 RUN apt-get update && apt-get install -y \
     xfce4 xfce4-terminal x11vnc xvfb novnc websockify supervisor dbus-x11 gedit vim \
+    tightvncserver \
     build-essential gcc g++ make pkg-config \
     python3 python3-pip git wget curl ca-certificates \
-    iverilog gtkwave yosys magic \
+    iverilog gtkwave yosys magic klayout verilator opensta \
  && rm -rf /var/lib/apt/lists/*
 
 # 2) Install OpenROAD from prebuilt Ubuntu 22.04 release
