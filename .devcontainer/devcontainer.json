@@ -11,7 +11,7 @@
     }
   },
   "overrideCommand": false,
-  "postStartCommand": "supervisord -c /etc/supervisor/conf.d/vnc.conf",
+  "postStartCommand": "bash -c 'rm -rf /tmp/.X* /tmp/.X11-unix && supervisord -c /etc/supervisor/conf.d/vnc.conf &'",
   "remoteUser": "root",
   "customizations": {
     "vscode": {
