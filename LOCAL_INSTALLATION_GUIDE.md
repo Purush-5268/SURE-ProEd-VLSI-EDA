@@ -56,15 +56,15 @@ sudo pip3 install volare openlane --break-system-packages
 ---
 
 ## Step 4: Install the SkyWater 130nm PDK (SKY130)
-The PDK (Process Design Kit) contains all the standard cells and physical rules necessary to turn your Verilog into real silicon layout. We use Volare to download and build it.
+The PDK (Process Design Kit) contains all the standard cells and physical rules necessary to turn your Verilog into real silicon layout. Because you are installing locally and have sufficient storage, we will download the **complete** PDK (including High Density, High Speed, Low Power, and all other variants). We use Volare to download the pre-compiled files.
 
 ```bash
 # Create a directory for the PDK and take ownership
 sudo mkdir -p /opt/pdk
 sudo chown -R $USER:$USER /opt/pdk
 
-# Use Volare to download the SKY130 PDK (this will take a few minutes)
-volare enable --pdk sky130 --pdk-root /opt/pdk bdc9412b3e468c102d01b7cf6337be06ec6e9c9a
+# Use Volare to download the ENTIRE SKY130 PDK (approx. 15GB - this may take a few minutes)
+volare enable --pdk sky130 --pdk-root /opt/pdk --include-libraries all bdc9412b3e468c102d01b7cf6337be06ec6e9c9a
 ```
 
 ---
